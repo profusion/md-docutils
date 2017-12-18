@@ -1,0 +1,44 @@
+{
+  "name": "md-docutils",
+  "version": "1.0.0",
+  "description": "Markdown Documentation Utilities",
+  "author": "ProFUSION Embedded Systems",
+  "license": "MIT",
+  "scripts": {
+    "gen-html": "node md2html.js"
+  },
+  "devDependencies": {
+    "aspell": "^0.1.0",
+    "dotenv": "^4.0.0",
+    "highlight.js": "^9.12.0",
+    "marked": "^0.3.7",
+    "mkdirp": "^0.5.1",
+    "mustache": "^2.3.0",
+    "xmldom": "^0.1.27",
+    "xpath": "0.0.27",
+    "yargs": "^10.0.3"
+  },
+  "main": "md2html.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/profusion/md-docutils.git"
+  },
+  "keywords": [
+    "md",
+    "markdown",
+    "documentation",
+    "utilities",
+    "html",
+    "pdf",
+    "spellchecker",
+    "aspell"
+  ],
+  "bugs": {
+    "url": "https://github.com/profusion/md-docutils/issues"
+  },
+  "homepage": "https://github.com/profusion/md-docutils#readme"
+}

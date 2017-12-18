@@ -1,0 +1,62 @@
+@page {
+    size: A4 portrait;
+    margin: 1in;
+}
+
+@page :blank {
+    @top-center {
+        content: "This page is intentionally left blank.";
+    }
+}
+
+h1 {
+    page-break-before: always;
+    counter-reset: footnote;
+}
+
+div#md-contents h1 {
+    string-set: chaptertitle content();
+}
+
+h1, h2, h3, h4, h5 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p {
+  page-break-before: avoid;
+}
+
+table, figure {
+    page-break-inside: avoid;
+}
+
+.toc-item a::after {
+    content: leader('.') target-counter(attr(href), page);
+}
+
+.toc-item a {
+    text-decoration: none;
+    color: #000;
+}
+
+div.front-page, div.back-page {
+    page: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.footnote {
+    counter-increment: footnote;
+}
+
+.footnote::footnote-call {
+    content: counter(footnote);
+    font-size: 9pt;
+    vertical-align: super;
+    line-height: none;
+}
+
+.footnote::footnote-marker {
+    font-weight: bold;
+}
