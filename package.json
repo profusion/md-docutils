@@ -21,7 +21,10 @@
     "xregexp": "^3.2.0",
     "yargs": "^10.0.3"
   },
-  "main": "md2html.js",
+  "bin": {
+    "md2html": "md2html.js",
+    "spellcheck-html": "spellcheck-html.js"
+  },
   "directories": {
     "test": "test"
   },
