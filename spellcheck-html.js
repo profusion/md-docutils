@@ -313,7 +313,7 @@ function getAspellOptionsForLang(options, lang) {
   if (!pws) {
     return options.aspellOption;
   }
-  return options.aspellOption.concat([ `--personal=${pws}` ]);
+  return options.aspellOption.concat([ `--personal=${path.resolve(pws)}` ]);
 }
 
 async function spellCheckHtml(fname, baseOptions) {
