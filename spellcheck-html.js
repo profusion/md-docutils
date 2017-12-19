@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+require('dotenv').config();
+
 const fs = require('fs');
 const path = require('path');
 const mkdirp = require('mkdirp');
@@ -176,7 +178,7 @@ class Aspell extends EventEmitter {
 
   checkWord(word, info) {
     if (!Aspell.isWord(word)) {
-      throw new Error('aspell should get only words (letters and numbers)!');
+      throw new Error('aspell should get only words (only letters)!');
     }
     this.queue.push({ word, info });
     this.proc.stdin.write(word + '\n');
@@ -198,15 +200,16 @@ class Aspell extends EventEmitter {
 
     const q = this.queue.splice(0, 1)[0];
     const result = {
-      type: Aspell.aspellToEventMap[c],
+      type: Aspell.aspellToEventMap[c] || c,
       word: q.word,
       info: q.info,
+      alternatives: [],
     }
 
     if (c === '&' || c === '#') {
       const parts = line.split(/:?,?\s/g);
       const word = parts[1];
-      if (word !== q.word) {
+      if (!q.word.startsWith(word)) {
         throw new Error('expected word: ' + q.word + ', got: ' + word);
       }
       result.position = parseInt(c === '#' ? parts[2] : parts[3]);
@@ -217,7 +220,7 @@ class Aspell extends EventEmitter {
   }
 
   static isWord(str) {
-    return !!str.match(Aspell.isWordRegExp);
+    return str.match(Aspell.isWordRegExp);
   }
 
   static splitWordsAndSpaces(str) {
@@ -225,14 +228,16 @@ class Aspell extends EventEmitter {
   }
 }
 
-Aspell.wordRegExp = '\\pL\\pN';
+Aspell.wordRegExp = '\\pL';
 Aspell.isWordRegExp = XRegExp(`^[${Aspell.wordRegExp}]+$`);
 Aspell.splitWordsAndSpacesRegExp = XRegExp(`([${Aspell.wordRegExp}]+|[^${Aspell.wordRegExp}]+)`);
 Aspell.aspellToEventMap = {
   '*': 'ok',
+  '+': 'ok', /* guessed/inferred */
   '-': 'run-together',
   '&': 'misspelling', /* with suggestions */
   '#': 'misspelling', /* no suggestions */
+  '?': 'misspelling',
 };
 
 async function spellCheckChildren(node, options, lang) {
