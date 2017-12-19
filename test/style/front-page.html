@@ -7,25 +7,35 @@
 
   <div class="title-container"><span id="title">{{title}}</span></div>
   <table class="doc-properties">
+    {{#doc-id}}
     <tr>
       <td class="doc-properties-key">Document ID</td>
       <td class="doc-properties-value" id="doc-id">{{doc-id}}</td>
     </tr>
+    {{/doc-id}}
+    {{#date}}
     <tr>
       <td class="doc-properties-key">Date</td>
       <td class="doc-properties-value">{{date}}</td>
     </tr>
+    {{/date}}
+    {{#author}}
     <tr>
       <td class="doc-properties-key">Author</td>
       <td class="doc-properties-value">{{{author}}}</td>
     </tr>
+    {{/author}}
+    {{#contacts}}
     <tr>
       <td class="doc-properties-key">Contacts</td>
       <td class="doc-properties-value">{{{contacts}}}</td>
     </tr>
+    {{/contacts}}
   </table>
 
+  {{#notice}}
   <div class="notice-box">{{{notice}}}</div>
+  {{/notice}}
 
 <div id="page-top-right-header">
   <svg style="height: 0.95cm" viewBox="0 0 722 162"><use xlink:href="#profusion-logo" /></svg>
