@@ -17,6 +17,22 @@ including series of CSS and JavaScript files, which are concatenated
 and included in the document. Last but not least, the Table of
 Contents (ToC) may be generated.
 
+### spellcheck-html.js
+
+`spellcheck-html.js` will use [aspell](http://aspell.net/) on the
+given HTML, highlighting the misspelling within `<abbr
+class="misspelling">` elements that will be introduced in the
+document. The process exit code is 1 on failure.
+
+This script enables foreign languages to be used within elements
+specified at the command line, such as `em` (emphasis) could be
+defined to check `en_US`. Tags can be ignored, by default `<pre>` and
+`<code>` are ignored.
+
+Personal dictionaries (`aspell-*.pws`) files can be used to extend the
+default dictionaries with domain specific terms (ie: project,
+services, acronyms, technical terms, etc).
+
 # License
 
 MIT
