@@ -8,7 +8,7 @@
     "gen-html": "node md2html.js",
     "spellcheck": "node spellcheck-html.js"
   },
-  "devDependencies": {
+  "dependencies": {
     "aspell": "^0.1.0",
     "cheerio": "^1.0.0-rc.2",
     "dotenv": "^4.0.0",
@@ -28,7 +28,6 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/profusion/md-docutils.git"
