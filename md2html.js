@@ -17,7 +17,7 @@ const defaultOutputDir = './out';
 const defaultToCTitle = 'Table of Contents';
 const defaultHighlightTheme = 'github';
 
-const hljsStylesDir = path.join(__dirname, 'node_modules/highlight.js/styles');
+const hljsStylesDir = path.join(require.resolve('highlight.js'), '../../styles');
 const hljsThemes = fs.readdirSync(hljsStylesDir)
       .filter(fname => fname.endsWith('.css'))
       .map(fname => path.basename(fname, '.css'))
